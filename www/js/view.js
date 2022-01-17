@@ -44,7 +44,7 @@ async function onSearchClick(){
         icon1.setAttribute("style","color:red");
         icon1.setAttribute("id","star"+z);
         icon1.setAttribute("title","Itinéraire");
-        icon1.setAttribute("onClick","window.location.href='https://www.google.com/maps/dir/@48.119808,-1.7104896,14z'");
+        icon1.setAttribute("onClick","window.open('https://www.google.com/maps/dir/?api=1&destination="+element.geometry.coordinates[1]+","+element.geometry.coordinates[0]+"')", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=500");
         
         
         result.appendChild(nom);
