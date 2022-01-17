@@ -27,3 +27,9 @@ function onDeviceReady() {
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
 }
+function star(recevingStarInfo){
+    $(this).hasClass("fas")?"": recevingStarInfo.classList.toggle("fas");
+    $(this).hasClass("far")?"": recevingStarInfo.classList.toggle("far");
+};
+
+
