@@ -4,6 +4,7 @@ class Geolocation
 
   static initialize()
   {
+   
       Geolocation.getWebLocation();
   }
   static requestPermissions() {

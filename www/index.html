@@ -44,10 +44,10 @@
 <nav class=" sticky-top   navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button>-->
+        <div id="navbarSupportedContent">
 
             <div class="d-flex" style="margin-left:80% ">
                 <input class="form-control me-2" 
@@ -111,7 +111,14 @@
 <script src="js/view.js"></script>
 <script>
 
-Geolocation.initialize();
+// Geolocation.initialize();
+
+const coords = {
+    latitude: 42,
+  longitude: -1,
+};
+
+Geolocation.coords = coords;
 
 window.onload = function()
 {
