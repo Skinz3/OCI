@@ -53,6 +53,3 @@ class OpenStreetMap {
 
 }
 
-function openModal(e){
-    console.log(e);
-}

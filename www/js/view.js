@@ -83,5 +83,28 @@ function myFunction(f) {
   } 
   document.getElementById("star").addEventListener("onClick",myFunction);
 }
+function openModal(e){
+  var lat= e.value.split(",")[0];
+  var lon= e.value.split(",")[1];
+  $('#interetForm').modal('show');
+  document.getElementById("lat").value=lat;
+  document.getElementById("lon").value=lon;
+}
+function saveToFirebase(){
+
+  db.collection("locations").add({    
+    targetUser: Session.user.user.uid,
+    description: $('#description').val(),    
+    numero : $('#numero').val(),    
+    ville: $('#ville').val(),    
+    rue: $('#rue').val(),   
+    latitude: $('#lat').val(),  
+    longitude: $('#lon').val(),  
+    
+  }
+ 
+  ); 
+  $('.toast').toast('show');
+}
 
 

@@ -58,7 +58,7 @@
     <script src="js/Geolocation.js"></script>
     <script src="js/OpenStreetMap.js"></script>
     <script src="js/view.js"></script>
-
+    <script src="js/session.js"></script>  
     <title>Navneed</title>
 </head>
 
@@ -122,14 +122,15 @@
                             <input type="text" placeholder="Description" class="form-control" id="description"><br>
                             <input placeholder="Numero" type="text" class="form-control" id="numero">
                             <input placeholder="Rue" type="text" class="form-control" id="rue">
-                            <input placeholder="Ville" type="text" class="form-control" id="rue"><br>
-
+                            <input placeholder="Ville" type="text" class="form-control" id="ville"><br>
+                            <input placeholder="Latitude" type="text" class="form-control" id="lat">
+                            <input placeholder="Longitude" type="text" class="form-control" id="lon">
                             <div class="form-group">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary"  class="btn-close" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" onclick="saveToFirebase()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -146,10 +147,11 @@
 
         const auth = firebase.auth();
 
+        db = firebase.firestore();
 
         auth.signInAnonymously().then((result) => {
             console.log("Connected to firebase.")
-
+            Session.user= result;
             console.log(result);
 
         })
