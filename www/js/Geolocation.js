@@ -1,11 +1,8 @@
-class Geolocation 
-{
+class Geolocation {
   static coords = null;
 
-  static initialize()
-  {
-   
-      Geolocation.getWebLocation();
+  static initialize() {
+    Geolocation.getWebLocation();
   }
   static requestPermissions() {
     var successCallback = function () {
@@ -34,17 +31,13 @@ class Geolocation
 
   }
 
-  static getWebLocation()
-  {
-    var showPosition = function (position) 
-    {
+  static getWebLocation() {
+    var showPosition = function (position) {
       Geolocation.coords = position.coords;
     };
-    if (navigator.geolocation) 
-    {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-    } else
-     {
+    } else {
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
   }
