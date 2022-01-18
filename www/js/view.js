@@ -57,7 +57,7 @@ async function onSearchClick(){
         var elementLong = element.geometry.coordinates[0];
         var elementLat = element.geometry.coordinates[1];
       // alert(OpenStreetMap.map);
-        var marker = L.marker([elementLat, elementLong]).addTo(Map.map).bindPopup(element.properties.name);
+        var marker = L.marker([elementLat, elementLong]).addTo(OpenStreetMap.map).bindPopup(element.properties.name);
        
         
 

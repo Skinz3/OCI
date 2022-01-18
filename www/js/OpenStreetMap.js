@@ -40,11 +40,19 @@ class OpenStreetMap {
 
 
     static onMapClick(e) {
+
+        var latlng = e.latlng.lat +','+e.latlng.lng;
+
         OpenStreetMap.popup
             .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
+            .setContent('<button value="'+latlng+'" class="btn btn-primary" onClick="openModal(this)">Ajouter</button> ')
             .openOn(OpenStreetMap.map);
-        var marker = L.marker(e.latlng).addTo(OpenStreetMap.map);
+        var marker = L.marker(e.latlng).addTo(OpenStreetMap.map); 
     }
+
+
 }
 
+function openModal(e){
+    console.log(e);
+}
