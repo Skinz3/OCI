@@ -75,7 +75,7 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
   icon1.setAttribute("style", "color:red");
   icon1.setAttribute("id", "star" + z);
   icon1.setAttribute("title", "Itinéraire");
-  icon1.setAttribute("onClick", "window.open('https://www.google.com/maps/dir/?api=1&destination=" + lon + "," + lat + "')", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=500");
+  icon1.setAttribute("onClick", "window.open('https://www.google.com/maps/dir/?api=1&destination=" + lat + "," + lon + "')", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=500");
 
   resultList.appendChild(nom);
 

@@ -39,11 +39,6 @@ class OpenStreetMap {
 
     }
 
-
-
-
-
-
     static addMarker(e) {
         // Add marker to map at click location
         const markerPlace = document.querySelector(".marker-position");
