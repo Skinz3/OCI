@@ -47,7 +47,6 @@ async function onSearchClick() {
       var data = child.data();
       if (data.description.toLowerCase().includes(searchText.toLowerCase())) {
 
-        console.log(data);
 
         appendResult(data.description, data.numero, data.rue, data.ville, data.latitude, data.longitude, z, resultList);
       }
@@ -113,7 +112,6 @@ async function openModal(e) {
   document.getElementById("ville").value = data.address.municipality;
   document.getElementById("rue").value = data.address.road;
 
-  console.log(data.address);
 
 
 }

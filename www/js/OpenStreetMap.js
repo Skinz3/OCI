@@ -1,6 +1,5 @@
 
-const buttonRemove =
-    '<button type="button" class="remove">delte marker 💔</button>';
+
 
 class OpenStreetMap {
 
@@ -49,12 +48,13 @@ class OpenStreetMap {
         // Add marker to map at click location
         const markerPlace = document.querySelector(".marker-position");
 
+        var latlng = e.latlng.lat + ',' + e.latlng.lng;
 
         const marker = new L.marker(e.latlng, {
-            draggable: true
+            //  draggable: true
         })
             .addTo(OpenStreetMap.map)
-            .bindPopup(buttonRemove);
+            .bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Ajouter</button></br></br><button type="button" class="remove btn btn-danger">Retirer </button>');
 
         // event remove marker
         marker.on("popupopen", OpenStreetMap.removeMarker);
