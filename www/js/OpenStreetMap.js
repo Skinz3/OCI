@@ -1,6 +1,10 @@
 
+   const buttonRemove =
+   '<button type="button" class="remove">delte marker 💔</button>';
+  
 class OpenStreetMap {
 
+ 
     static map;
     static popup;
 
@@ -31,25 +35,52 @@ class OpenStreetMap {
             minZoom: 1,
             maxZoom: 20
         }).addTo(macarte);
-        macarte.on('click', OpenStreetMap.onMapClick);
+        macarte.on('click', this.addMarker);
+        console.log("test");
 
     }
 
 
 
 
+    
 
-    static onMapClick(e) {
-
-        var latlng = e.latlng.lat + ',' + e.latlng.lng;
-
-        OpenStreetMap.popup
-            .setLatLng(e.latlng)
-            .setContent('<button value="' + latlng + '" class="btn btn-primary" onClick="openModal(this)">Ajouter</button> ')
-            .openOn(OpenStreetMap.map);
-
-        var marker = L.marker(e.latlng).addTo(OpenStreetMap.map);
+    static addMarker(e) {
+      // Add marker to map at click location
+      const markerPlace = document.querySelector(".marker-position");
+     
+    
+      const marker = new L.marker(e.latlng, {
+        draggable: true
+      })
+        .addTo(OpenStreetMap.map)
+        .bindPopup(buttonRemove);
+    
+      // event remove marker
+      marker.on("popupopen", removeMarker);
+    
+      // event draged marker
+      marker.on("dragend", dragedMaker);
     }
+    
+
+    
+    // remove marker
+    static removeMarker() {
+      const marker = this;
+      const btn = document.querySelector(".remove");
+      btn.addEventListener("click", function () {
+        const markerPlace = document.querySelector(".marker-position");
+        OpenStreetMap.map.removeLayer(marker);
+      });
+    }
+    
+    // draged
+    static dragedMaker() {
+      const markerPlace = document.querySelector(".marker-position");
+    
+    }
+
 
 
 }
