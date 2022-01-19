@@ -2,10 +2,10 @@
 async function onSearchClick() {
 
   var searchText = document.getElementById("searchbar").value;
-  var result = document.getElementById("resultList");
+  var resultList = document.getElementById("resultList");
 
-  while (result.firstChild) {
-    result.removeChild(result.firstChild);
+  while (resultList.firstChild) {
+    resultList.removeChild(resultList.firstChild);
   }
 
   var lat = Geolocation.coords.latitude;
@@ -22,49 +22,72 @@ async function onSearchClick() {
   var z = 0;
 
 
-  result.append(but_enreg);
+  resultList.append(but_enreg);
 
   results.forEach(element => {
+
+    var lat = element.geometry.coordinates[1];
+    var lon = element.geometry.coordinates[0];
     ++z;
 
-    var nom = document.createElement('a');
-    nom.setAttribute("class", "list-group-item clearfix");
-    nom.innerHTML = "<b>" + element.properties.name + "</b></br>" + element.properties.housenumber + " " + element.properties.street + ", " + element.properties.city;
-    var t = document.createElement('span');
-    t.setAttribute("class", "pull-right");
-
-    var icon = document.createElement('i');
-    icon.setAttribute("class", "far fa-star");
-    icon.setAttribute("id", "star" + z);
-    icon.setAttribute("title", "Add to favorite");
-    icon.setAttribute("onClick", "myFunction(id)");
-
-    var icon1 = document.createElement('i');
-    icon1.setAttribute("class", "fas fa-map-marker-alt");
-    icon1.setAttribute("style", "color:red");
-    icon1.setAttribute("id", "star" + z);
-    icon1.setAttribute("title", "Itinéraire");
-    icon1.setAttribute("onClick", "window.open('https://www.google.com/maps/dir/?api=1&destination=" + element.geometry.coordinates[1] + "," + element.geometry.coordinates[0] + "')", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=500");
-
-
-    result.appendChild(nom);
-
-    nom.appendChild(t);
-    t.appendChild(icon);
-    t.appendChild(document.createTextNode(" "));
-    t.appendChild(icon1);
-
-    var elementLong = element.geometry.coordinates[0];
-    var elementLat = element.geometry.coordinates[1];
-    // alert(OpenStreetMap.map);
-    var marker = L.marker([elementLat, elementLong]).addTo(OpenStreetMap.map).bindPopup(element.properties.name);
-
+    appendResult(element.properties.name,
+      element.properties.housenumber,
+      element.properties.street,
+      element.properties.city,
+      lat,
+      lon,
+      z, resultList);
 
   });
 
+  db.collection("locations").get().then((docs) => {
+
+    docs.forEach(function (child) {
+
+      var data = child.data();
+      if (data.description.toLowerCase().includes(searchText.toLowerCase())) {
+
+        console.log(data);
+
+        appendResult(data.description, data.numbero, data.rue, data.ville, data.latitude, data.longitude, z, resultList);
+      }
+    });
+
+  })
+
+
 
 }
+function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) {
+  var nom = document.createElement('a');
+  nom.setAttribute("class", "list-group-item clearfix");
+  nom.innerHTML = "<b>" + name + "</b></br>" + houseNumber + " " + street + ", " + city;
+  var t = document.createElement('span');
+  t.setAttribute("class", "pull-right");
 
+  var icon = document.createElement('i');
+  icon.setAttribute("class", "far fa-star");
+  icon.setAttribute("id", "star" + z);
+  icon.setAttribute("title", "Add to favorite");
+  icon.setAttribute("onClick", "myFunction(id)");
+
+  var icon1 = document.createElement('i');
+  icon1.setAttribute("class", "fas fa-map-marker-alt");
+  icon1.setAttribute("style", "color:red");
+  icon1.setAttribute("id", "star" + z);
+  icon1.setAttribute("title", "Itinéraire");
+  icon1.setAttribute("onClick", "window.open('https://www.google.com/maps/dir/?api=1&destination=" + lon + "," + lat + "')", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=500");
+
+  resultList.appendChild(nom);
+
+  nom.appendChild(t);
+  t.appendChild(icon);
+  t.appendChild(document.createTextNode(" "));
+  t.appendChild(icon1);
+
+  // alert(OpenStreetMap.map);
+  var marker = L.marker([lat, lon]).addTo(OpenStreetMap.map).bindPopup(name);
+}
 function myFunction(f) {
   var star = document.getElementById(f);
   if (star.className == "far fa-star") {

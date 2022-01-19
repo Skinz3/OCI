@@ -54,11 +54,11 @@
 
 
 
-    <script src="js/API/KomootAPI.js"></script>
+    <script src="js/API/LocationApi.js"></script>
     <script src="js/Geolocation.js"></script>
     <script src="js/OpenStreetMap.js"></script>
     <script src="js/view.js"></script>
-    <script src="js/session.js"></script>  
+    <script src="js/session.js"></script>
     <title>Navneed</title>
 </head>
 
@@ -105,9 +105,7 @@
 
     <!-- Fichiers Javascript -->
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#interetForm">
-        Ajouter
-    </button>
+
     <!-- Modal -->
     <div class="modal fade" id="interetForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -129,8 +127,10 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"  class="btn-close" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" onclick="saveToFirebase()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" class="btn-close"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        onclick="saveToFirebase()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
 
         auth.signInAnonymously().then((result) => {
             console.log("Connected to firebase.")
-            Session.user= result;
+            Session.user = result;
             console.log(result);
 
         })
@@ -167,17 +167,13 @@
 
     </script>
 
-
-
-
-
     <script>
 
         // Geolocation.initialize();
 
         const coords = {
-            latitude: 42,
-            longitude: -1,
+            latitude: 48.117266,
+            longitude: -1.6777926,
         };
 
         Geolocation.coords = coords;

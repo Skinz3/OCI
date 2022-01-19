@@ -41,13 +41,14 @@ class OpenStreetMap {
 
     static onMapClick(e) {
 
-        var latlng = e.latlng.lat +','+e.latlng.lng;
+        var latlng = e.latlng.lat + ',' + e.latlng.lng;
 
         OpenStreetMap.popup
             .setLatLng(e.latlng)
-            .setContent('<button value="'+latlng+'" class="btn btn-primary" onClick="openModal(this)">Ajouter</button> ')
+            .setContent('<button value="' + latlng + '" class="btn btn-primary" onClick="openModal(this)">Ajouter</button> ')
             .openOn(OpenStreetMap.map);
-        var marker = L.marker(e.latlng).addTo(OpenStreetMap.map); 
+
+        var marker = L.marker(e.latlng).addTo(OpenStreetMap.map);
     }
 
 
