@@ -1,10 +1,10 @@
 
-   const buttonRemove =
-   '<button type="button" class="remove">delte marker 💔</button>';
-  
+const buttonRemove =
+    '<button type="button" class="remove">delte marker 💔</button>';
+
 class OpenStreetMap {
 
- 
+
     static map;
     static popup;
 
@@ -43,42 +43,43 @@ class OpenStreetMap {
 
 
 
-    
+
 
     static addMarker(e) {
-      // Add marker to map at click location
-      const markerPlace = document.querySelector(".marker-position");
-     
-    
-      const marker = new L.marker(e.latlng, {
-        draggable: true
-      })
-        .addTo(OpenStreetMap.map)
-        .bindPopup(buttonRemove);
-    
-      // event remove marker
-      marker.on("popupopen", removeMarker);
-    
-      // event draged marker
-      marker.on("dragend", dragedMaker);
-    }
-    
+        // Add marker to map at click location
+        const markerPlace = document.querySelector(".marker-position");
 
-    
+
+        const marker = new L.marker(e.latlng, {
+            draggable: true
+        })
+            .addTo(OpenStreetMap.map)
+            .bindPopup(buttonRemove);
+
+        // event remove marker
+        marker.on("popupopen", OpenStreetMap.removeMarker);
+
+        // event draged marker
+        marker.on("dragend", OpenStreetMap.dragedMaker);
+    }
+
+
+
     // remove marker
     static removeMarker() {
-      const marker = this;
-      const btn = document.querySelector(".remove");
-      btn.addEventListener("click", function () {
-        const markerPlace = document.querySelector(".marker-position");
-        OpenStreetMap.map.removeLayer(marker);
-      });
+        const marker = this;
+        console.log(marker);
+        const btn = document.querySelector(".remove");
+        btn.addEventListener("click", function () {
+            const markerPlace = document.querySelector(".marker-position");
+            OpenStreetMap.map.removeLayer(marker);
+        });
     }
-    
+
     // draged
     static dragedMaker() {
-      const markerPlace = document.querySelector(".marker-position");
-    
+        const markerPlace = document.querySelector(".marker-position");
+
     }
 
 
