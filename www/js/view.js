@@ -49,7 +49,7 @@ async function onSearchClick() {
 
         console.log(data);
 
-        appendResult(data.description, data.numbero, data.rue, data.ville, data.latitude, data.longitude, z, resultList);
+        appendResult(data.description, data.numero, data.rue, data.ville, data.latitude, data.longitude, z, resultList);
       }
     });
 
