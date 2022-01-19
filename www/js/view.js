@@ -131,7 +131,13 @@ function saveToFirebase() {
   }
 
   );
-  $('.toast').toast('show');
+  cuteAlert({
+    type: "success",
+    title: "Emplacement ajouté",
+    message: "L'emplacement " + $('#description').val() + " a bien été ajouté a la base de donnée.",
+    buttonText: "Okay",
+    img: "img/success.svg",
+  })
 }
 
 
