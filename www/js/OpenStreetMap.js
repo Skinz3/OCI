@@ -6,6 +6,7 @@ class OpenStreetMap {
 
     static map;
     static popup;
+    
 
     static initMap(lat, lon) {
         var macarte = L.map('map').setView([lat, lon], 11);
@@ -17,12 +18,15 @@ class OpenStreetMap {
         OpenStreetMap.popup = L.popup();
 
         OpenStreetMap.map = macarte;
+        
 
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
             minZoom: 1,
             maxZoom: 20
         }).addTo(macarte);
+        
+      
 
 
 
@@ -44,12 +48,18 @@ class OpenStreetMap {
         const markerPlace = document.querySelector(".marker-position");
 
         var latlng = e.latlng.lat + ',' + e.latlng.lng;
-
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+          });
         const marker = new L.marker(e.latlng, {
-            //  draggable: true
-        })
-            .addTo(OpenStreetMap.map)
-            .bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Ajouter</button></br></br><button type="button" class="remove btn btn-danger">Retirer </button>');
+           
+            icon: greenIcon
+        }).addTo(OpenStreetMap.map).bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Ajouter</button></br></br><button type="button" class="remove btn btn-danger">Retirer </button>');
 
         // event remove marker
         marker.on("popupopen", OpenStreetMap.removeMarker);

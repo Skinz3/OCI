@@ -51,7 +51,19 @@
     
   }
   
+  li {
+    display:inline-block;
+    padding:15px;
+   }
+   
+   li:hover {
+     color:darkgreen;
+     border-bottom: 2px solid green;
+     padding-bottom: 13px;
+   }
 
-
+   .vide{
+     margin-right: 2%;
+   }
 /*>>>>>>> 9a2e76f43bd9cc92e60ee9384bbc134c9231eb9d*/
   

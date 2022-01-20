@@ -10,6 +10,16 @@ async function onSearchClick() {
 
   var lat = Geolocation.coords.latitude;
   var long = Geolocation.coords.longitude;
+if(searchText==""){
+  cuteAlert({
+    type: "warning",
+    title: "Veuillez Saisir un centre d'interet",
+    message: "Champs de saisie vide",
+    buttonText: "Okay",
+    img: "../img/warning.svg",
+  })
+  return;
+}
 
   var results = await LocationApi.search(searchText, lat, long, 10);
 

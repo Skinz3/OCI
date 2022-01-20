@@ -55,7 +55,7 @@
     <script src="js/OpenStreetMap.js"></script>
     <script src="js/view.js"></script>
     <script src="js/session.js"></script>
-    <title>Navneed</title>
+    <title>Listes Enregistrées</title>
 </head>
 
 <body>
@@ -83,132 +83,24 @@
                 <button onclick="onSearchClick()" id="btnSearch" class="btn btn-outline-success"
                     type="submit">Search</button>
             </div>
-            <span class="vide"></span>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active"   aria-current="page" href="#">Acceuil</a>
+                        <a class="nav-link "   href="index.html">Acceuil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="favoris.html">Mes favoris</a>
+                        <a class="nav-link" href="favoris.html" aria-current="page">Mes favoris</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="listes.html">Mes listes</a>
+                        <a class="nav-link active" href="listes.html">Mes listes</a>
                     </li>
                 </ul>
 
             </div>
         </div>
     </nav>
-    <div id="imap">
-        <div id="map" style="width: 95%;margin-left: auto;margin-right: auto;">
-            <!-- Ici s'affichera la carte -->
-        </div>
-    </div>
-    <div class="container">
-        <div class="row1">
-            <div class="container1">
-                <div id="resultList" class="list-group">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Fichiers Javascript -->
-    <!-- Button trigger modal -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="interetForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ajouter centre d'intéret</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Description" class="form-control" id="description"><br>
-                            <input placeholder="Numero" type="text" class="form-control" id="numero">
-                            <input placeholder="Rue" type="text" class="form-control" id="rue">
-                            <input placeholder="Ville" type="text" class="form-control" id="ville"><br>
-                            <input placeholder="Latitude" type="text" class="form-control" id="lat">
-                            <input placeholder="Longitude" type="text" class="form-control" id="lon">
-                            <div class="form-group">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" class="btn-close"
-                        data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                        onclick="saveToFirebase()">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-
-        firebase.initializeApp({
-            apiKey: "AIzaSyAPzdd1ADtyOeL1EUuUbx8jFOwkRTYpa3o",
-            authDomain: "navneed-oci.firebaseapp.com",
-            projectId: "navneed-oci",
-        });
-
-        const auth = firebase.auth();
-
-        db = firebase.firestore();
-
-        auth.signInAnonymously().then((result) => {
-            console.log("Connected to firebase.")
-            Session.user = result;
-            console.log(result);
-
-        })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage);
-                alert("Unable to connect to firebase.");
-            });
-
-
-
-
-    </script>
-
-    <script>
-
-        // Geolocation.initialize();
-
-        const coords = {
-            latitude: 48.117266,
-            longitude: -1.6777926,
-        };
-
-        Geolocation.coords = coords;
-
-        window.onload = function () {
-            var lat = Geolocation.coords.latitude;
-            var lon = Geolocation.coords.longitude;
-            OpenStreetMap.initMap(lat, lon);
-        };
-
-        function searchKeyPress(e) {
-            // look for window.event in case event isn't passed in
-            e = e || window.event;
-            if (e.keyCode == 13) {
-                document.getElementById('btnSearch').click();
-                return false;
-            }
-            return true;
-        }
-    </script>
-
-
-
-
+    <h1>Bienvenue sur la page Listes Enregistrées</h1>
 </body>
 
 </html>
