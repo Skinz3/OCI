@@ -1,8 +1,5 @@
 
-
 searchMarkers = []
-
-
 
 function cleanMarkers() {
   searchMarkers.forEach(function (marker) {
