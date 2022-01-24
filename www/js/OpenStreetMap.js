@@ -57,15 +57,17 @@ class OpenStreetMap {
             shadowSize: [41, 41]
           });
         const marker = new L.marker(e.latlng, {
-           
+            
             icon: greenIcon
         }).addTo(OpenStreetMap.map).bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Ajouter</button></br></br><button type="button" class="remove btn btn-danger">Retirer </button>');
 
+        
         // event remove marker
         marker.on("popupopen", OpenStreetMap.removeMarker);
 
         // event draged marker
         marker.on("dragend", OpenStreetMap.dragedMaker);
+        
     }
 
 

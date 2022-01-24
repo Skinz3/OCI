@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
@@ -77,8 +79,8 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <input style="margin-left: 3%;" class="form-control me-2" id="searchbar" type="search"
-                    placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search">
+                <input id="speechToText" style="margin-left: 3%;" class="form-control me-2" id="searchbar" type="search"
+                    placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search" onclick="record()">
 
                 <button onclick="onSearchClick()" id="btnSearch" class="btn btn-outline-success"
                     type="submit">Search</button>
@@ -87,7 +89,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active"   aria-current="page" href="#">Acceuil</a>
+                        <a class="nav-link active"   aria-current="page" href="#">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"  href="favoris.html">Mes favoris</a>
@@ -147,6 +149,19 @@
         </div>
     </div>
 
+    <script>
+        function record() {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "fr-FR";
+
+            recognition.onresult = function(event) {
+                // console.log(event);
+                document.getElementById('speechToText').value = event.results[0][0].transcript;
+            }
+            recognition.start();
+
+        }
+    </script>
 
     <script>
 
