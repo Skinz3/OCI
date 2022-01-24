@@ -79,10 +79,10 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <input id="speechToText" style="margin-left: 3%;" class="form-control me-2" id="searchbar" type="search"
-                    placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search" onclick="record()">
+                <input style="margin-left: 3%;" class="form-control me-2" id="searchbar" type="search"
+                    placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search"">
 
-                <button onclick="onSearchClick()" id="btnSearch" class="btn btn-outline-success"
+                <button onclick=" onSearchClick()" id="btnSearch" class="btn btn-outline-success"
                     type="submit">Search</button>
             </div>
             <span class="vide"></span>
@@ -149,19 +149,6 @@
         </div>
     </div>
 
-    <script>
-        function record() {
-            var recognition = new webkitSpeechRecognition();
-            recognition.lang = "fr-FR";
-
-            recognition.onresult = function (event) {
-                // console.log(event);
-                document.getElementById('speechToText').value = event.results[0][0].transcript;
-            }
-            recognition.start();
-
-        }
-    </script>
 
     <script>
 

@@ -16,7 +16,6 @@ async function onSearchClick() {
   cleanMarkers();
   var searchText = document.getElementById("searchbar").value;
   var resultList = document.getElementById("resultList");
-  speechToText
 
   while (resultList.firstChild) {
     resultList.removeChild(resultList.firstChild);
