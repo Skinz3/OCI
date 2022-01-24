@@ -84,6 +84,7 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
 
   var nom = document.createElement('a');
   nom.setAttribute("class", "list-group-item clearfix");
+  nom.setAttribute("id", z);
   nom.innerHTML = "<b>" + name + "</b></br>" + houseNumber + " " + street + ", " + city;
   var t = document.createElement('span');
   t.setAttribute("class", "pull-right");
@@ -117,23 +118,28 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
     city: city,
     name: name,
     latitude: lat,
-    longitude: long,
+    longitude: lon,
   };
 
   currentResults.push(element);
   searchMarkers.push(marker);
 }
 function addToFavorite(f) {
+
   var star = document.getElementById(f);
+  var index = star.parentNode.parentNode.id;
+  var value = currentResults[index - 1];
+
   if (star.className == "far fa-star") {
+
     db.collection("favoris").add({
       targetUser: Session.user.user.uid,
-      description: $('#description').val(),
-      numero: $('#numero').val(),
-      ville: $('#ville').val(),
-      rue: $('#rue').val(),
-      latitude: $('#lat').val(),
-      longitude: $('#lon').val(),
+      description: value.name,
+      numero: value.houseNumber,
+      ville: value.city,
+      rue: value.street,
+      latitude: value.latitude,
+      longitude: value.longitude,
     });
     cuteAlert({
       type: "success",
