@@ -89,7 +89,7 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
   icon.setAttribute("class", "far fa-star");
   icon.setAttribute("id", "star" + z);
   icon.setAttribute("title", "Add to favorite");
-  icon.setAttribute("onClick", "myFunction(id)");
+  icon.setAttribute("onClick", "addToFavorite(id)");
 
   var icon1 = document.createElement('i');
   icon1.setAttribute("class", "fas fa-map-marker-alt");
@@ -113,6 +113,21 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
 function addToFavorite(f) {
   var star = document.getElementById(f);
   if (star.className == "far fa-star") {
+    db.collection("favoris").add({
+      targetUser: Session.user.user.uid,
+      description: $('#description').val(),
+      numero: $('#numero').val(),
+      ville: $('#ville').val(),
+      rue: $('#rue').val(),
+      latitude: $('#lat').val(),
+      longitude: $('#lon').val(),
+    });
+    cuteAlert({
+      type: "success",
+      title: "Emplacement ajouté aux favoris",
+      message: "L'emplacement " + $('#description').val() + " a bien été ajouté aux favoris",
+      img: "../img/success.svg",
+    })
     star.setAttribute("class", "fas fa-star");
     star.setAttribute("title", "Remove from favorite");
   } else {
