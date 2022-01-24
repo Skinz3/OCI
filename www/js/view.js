@@ -68,7 +68,7 @@ async function onSearchClick() {
       var data = child.data();
       if (data.description.toLowerCase().includes(searchText.toLowerCase())) {
 
-
+        ++z;
         appendResult(data.description, data.numero, data.rue, data.ville, data.latitude, data.longitude, z, resultList);
       }
     });
@@ -110,7 +110,7 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
 
   searchMarkers.push(marker);
 }
-function myFunction(f) {
+function addToFavorite(f) {
   var star = document.getElementById(f);
   if (star.className == "far fa-star") {
     star.setAttribute("class", "fas fa-star");
@@ -119,7 +119,7 @@ function myFunction(f) {
     star.setAttribute("class", "far fa-star");
     star.setAttribute("title", "Add to favorite");
   }
-  document.getElementById("star").addEventListener("onClick", myFunction);
+  document.getElementById("star").addEventListener("onClick", addToFavorite);
 }
 async function openModal(e) {
   var lat = e.value.split(",")[0];
