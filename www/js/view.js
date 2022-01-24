@@ -16,6 +16,7 @@ async function onSearchClick() {
   cleanMarkers();
   var searchText = document.getElementById("searchbar").value;
   var resultList = document.getElementById("resultList");
+  speechToText
 
   while (resultList.firstChild) {
     resultList.removeChild(resultList.firstChild);
@@ -141,6 +142,7 @@ async function openModal(e) {
 
 }
 function saveToFirebase() {
+
 
   db.collection("locations").add({
     targetUser: Session.user.user.uid,
