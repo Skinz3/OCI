@@ -3,7 +3,7 @@ async function onSearchClick() {
 
   var searchText = document.getElementById("speechToText").value;
   var resultList = document.getElementById("resultList");
-  speechToText
+ 
 
   while (resultList.firstChild) {
     resultList.removeChild(resultList.firstChild);
