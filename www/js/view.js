@@ -1,4 +1,5 @@
 
+currentResults = []
 searchMarkers = []
 
 function cleanMarkers() {
@@ -10,6 +11,7 @@ function cleanMarkers() {
 }
 async function onSearchClick() {
 
+  currentResults = []
   cleanMarkers();
   var searchText = document.getElementById("searchbar").value;
   var resultList = document.getElementById("resultList");
@@ -79,6 +81,7 @@ async function onSearchClick() {
 
 }
 function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) {
+
   var nom = document.createElement('a');
   nom.setAttribute("class", "list-group-item clearfix");
   nom.innerHTML = "<b>" + name + "</b></br>" + houseNumber + " " + street + ", " + city;
@@ -108,6 +111,16 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
   // alert(OpenStreetMap.map);
   var marker = L.marker([lat, lon]).addTo(OpenStreetMap.map).bindPopup(name);
 
+  const element = {
+    houseNumber: houseNumber,
+    street: street,
+    city: city,
+    name: name,
+    latitude: lat,
+    longitude: long,
+  };
+
+  currentResults.push(element);
   searchMarkers.push(marker);
 }
 function addToFavorite(f) {
