@@ -14,6 +14,7 @@ async function onSearchClick() {
   var searchText = document.getElementById("searchbar").value;
   var resultList = document.getElementById("resultList");
 
+
   while (resultList.firstChild) {
     resultList.removeChild(resultList.firstChild);
   }
