@@ -1,6 +1,19 @@
 
+
+searchMarkers = []
+
+
+
+function cleanMarkers() {
+  searchMarkers.forEach(function (marker) {
+    OpenStreetMap.map.removeLayer(marker);
+  });
+
+  searchMarkers = []
+}
 async function onSearchClick() {
 
+  cleanMarkers();
   var searchText = document.getElementById("searchbar").value;
   var resultList = document.getElementById("resultList");
 
@@ -10,16 +23,16 @@ async function onSearchClick() {
 
   var lat = Geolocation.coords.latitude;
   var long = Geolocation.coords.longitude;
-if(searchText==""){
-  cuteAlert({
-    type: "warning",
-    title: "Veuillez Saisir un centre d'interet",
-    message: "Champs de saisie vide",
-    buttonText: "Okay",
-    img: "../img/warning.svg",
-  })
-  return;
-}
+
+  if (searchText == "") {
+    cuteAlert({
+      type: "warning",
+      title: "Veuillez Saisir un centre d'interet",
+      message: "Champs de saisie vide",
+      buttonText: "Okay",
+      img: "../img/warning.svg",
+    });
+  }
 
   var results = await LocationApi.search(searchText, lat, long, 10);
 
@@ -96,6 +109,8 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
 
   // alert(OpenStreetMap.map);
   var marker = L.marker([lat, lon]).addTo(OpenStreetMap.map).bindPopup(name);
+
+  searchMarkers.push(marker);
 }
 function myFunction(f) {
   var star = document.getElementById(f);
