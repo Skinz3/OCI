@@ -2,24 +2,30 @@
 currentResults = []
 searchMarkers = []
 
-function cleanMarkers() {
+function clearMarkers() {
   searchMarkers.forEach(function (marker) {
     OpenStreetMap.map.removeLayer(marker);
   });
 
   searchMarkers = []
 }
+
+
+function clearResults() {
+  clearMarkers();
+  currentResults = []
+  while (resultList.firstChild) {
+    resultList.removeChild(resultList.firstChild);
+  }
+
+}
 async function onSearchClick() {
 
-  currentResults = []
-  cleanMarkers();
+  clearResults();
   var searchText = document.getElementById("searchbar").value;
   var resultList = document.getElementById("resultList");
 
 
-  while (resultList.firstChild) {
-    resultList.removeChild(resultList.firstChild);
-  }
 
   var lat = Geolocation.coords.latitude;
   var long = Geolocation.coords.longitude;
@@ -32,6 +38,8 @@ async function onSearchClick() {
       buttonText: "Okay",
       img: "../img/warning.svg",
     });
+
+    return;
   }
 
   var results = await LocationApi.search(searchText, lat, long, 10);
@@ -39,11 +47,10 @@ async function onSearchClick() {
   var but_enreg = document.createElement('button');
   but_enreg.setAttribute("class", "btn btn-secondary btn-sm");
   but_enreg.textContent = 'Enregistrer Liste';
+  but_enreg.setAttribute('onclick', 'clearResults()');
   but_enreg.style.width = '150px';
 
-
   var z = 0;
-
 
   resultList.append(but_enreg);
 
@@ -130,14 +137,16 @@ function addToFavorite(f) {
   var index = star.parentNode.parentNode.id;
   var value = currentResults[index - 1];
 
+  console.log(value);
+
   if (star.className == "far fa-star") {
 
     db.collection("favoris").add({
-      targetUser: Session.user.user.uid,
+      targetUser: Session.user.uid,
       description: value.name,
-      numero: value.houseNumber,
-      ville: value.city,
-      rue: value.street,
+      numero: value.houseNumber == undefined ? null : value.houseNumber,
+      ville: value.city == undefined ? null : value.city,
+      rue: value.street == undefined ? null : value.street,
       latitude: value.latitude,
       longitude: value.longitude,
     });
@@ -153,7 +162,7 @@ function addToFavorite(f) {
     star.setAttribute("class", "far fa-star");
     star.setAttribute("title", "Add to favorite");
   }
-  document.getElementById("star").addEventListener("onClick", addToFavorite);
+  document.getElementById("star" + index).addEventListener("onClick", addToFavorite);
 }
 async function openModal(e) {
   var lat = e.value.split(",")[0];
@@ -176,7 +185,7 @@ function saveToFirebase() {
 
 
   db.collection("locations").add({
-    targetUser: Session.user.user.uid,
+    targetUser: Session.user.uid,
     description: $('#description').val(),
     numero: $('#numero').val(),
     ville: $('#ville').val(),
