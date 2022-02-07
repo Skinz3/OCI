@@ -204,5 +204,15 @@ function saveToFirebase() {
     img: "../img/success.svg",
   })
 }
+function displayFavorites(){
+  clearResults();
+ 
 
+  const favoritesRef =  db.collections("favoris");
+
+  const q = query(favoritesRef, where("targetUser", "==", Session.user.uid));
+
+  console.log(q);
+
+}
 

@@ -21,7 +21,7 @@ signInButton.addEventListener("click", (e) => {
     var email = document.getElementById("uname")
     var password = document.getElementById("psw")
 
-
+    console.log(email.value);
     auth.signInWithEmailAndPassword(email.value, password.value)
         .then((userCredential) => {
             var user = userCredential.user;
@@ -50,8 +50,8 @@ function disconnect() {
     location.reload();
 }
 function signup() {
-    var email = document.getElementById("uname")
-    var password = document.getElementById("psw")
+    var email = document.getElementById("suname")
+    var password = document.getElementById("spsw")
     console.log(email.value);
 
     console.log(password.value);
