@@ -29,6 +29,43 @@ signInButton.addEventListener("click", (e) => {
         })
         .catch((error) => {
             var errorMessage = error.message;
-            alert(errorMessage)
+
+            cuteAlert({
+                type: "warning",
+                title: "Connexion impossible",
+                message: errorMessage,
+                buttonText: "Okay",
+                img: "../img/warning.svg",
+            });
+
         });
 })
+
+function goToSignup() {
+    document.getElementById("loginDiv").style.display = "none";
+    document.getElementById("signupDiv").style.display = "block";
+}
+function disconnect() {
+    auth.signOut()
+    location.reload();
+}
+function signup() {
+    var email = document.getElementById("uname")
+    var password = document.getElementById("psw")
+    console.log(email.value);
+
+    console.log(password.value);
+    auth.createUserWithEmailAndPassword(email.value, password.value)
+        .then((userCredential) => {
+
+            location.reload();
+
+
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("error code", errorCode)
+            console.log("error Message", errorMessage)
+        });
+}
