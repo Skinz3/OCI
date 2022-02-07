@@ -205,14 +205,23 @@ function saveToFirebase() {
   })
 }
 function displayFavorites(){
+  console.log("btn clickable");
   clearResults();
- 
+  var resultList = document.getElementById("resultList");
+  var z = 0;
+  db.collection("favoris").where("targetUser", "==", Session.user.uid)
+  .get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+         var document = doc.data();
 
-  const favoritesRef =  db.collections("favoris");
+         appendResult(document.description,document.numero,document.rue,document.ville,document.latitude,document.longitude,z++,resultList);
+    });
+})
+.catch((error) => {
+    console.log("Error getting documents: ", error);
+});
 
-  const q = query(favoritesRef, where("targetUser", "==", Session.user.uid));
-
-  console.log(q);
 
 }
 
