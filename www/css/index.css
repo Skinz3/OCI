@@ -82,7 +82,7 @@ ul#myUL {list-style-type: none;}
 
 #loginDiv{
         border-radius: 5px;
-        
+        width: auto;
         padding: 20px;
         border-style: groove;
 
@@ -90,14 +90,14 @@ ul#myUL {list-style-type: none;}
       }
 #signupDiv{
   border-radius: 5px;
-        
+  width: auto;
         padding: 20px;
         border-style: groove;
 }
 
   #signin {
         text-align: center;
-        width: 10%;
+        width: auto;
         border-radius: 10px;
 
         background-color: #04AA6D;
@@ -105,13 +105,13 @@ ul#myUL {list-style-type: none;}
 
   #signup{
         text-align: center;
-        width: 5%;
+        width: auto;
         
         background-color: #04AA6D;
       }
 #signup1{
         text-align: center;
-        width: 8%;
+        width: auto;
         border-radius: 10px;
         background-color: #04AA6D;
       }
@@ -125,7 +125,7 @@ ul#myUL {list-style-type: none;}
 
 #cancel_button{
         text-align: center;
-        width: 7%;
+        width: auto;
         background-color: #04AA6D;
         border-radius: 10px;
 }
@@ -133,15 +133,18 @@ ul#myUL {list-style-type: none;}
 #centrer{
   text-align: center;
   font-family: 'Roboto', sans-serif;
+  width: auto;
    
 
 }
+
+
 
 #suname,#spsw,#uname,#psw{
 
  margin-left: auto;
     margin-right: auto;
-    width: 20%;
+    width: auto;
 text-align: center;
 }
 
