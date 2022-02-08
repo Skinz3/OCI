@@ -58,7 +58,7 @@ class OpenStreetMap {
         });
         const marker = new L.marker(e.latlng, {
             icon: greenIcon
-        }).addTo(OpenStreetMap.map).bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Ajouter</button></br></br><button type="button" class="remove btn btn-danger">Retirer </button>');
+        }).addTo(OpenStreetMap.map).bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Add Point</button></br></br><button type="button" class="remove btn btn-danger"> Remove  </button>');
 
 
         // event remove marker
