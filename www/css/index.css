@@ -152,5 +152,9 @@ text-align: center;
   color: #0000008C;
 }
 
+.fontAwesome {
+  font-family: 'Helvetica', FontAwesome, sans-serif;
+}
+
 
   
