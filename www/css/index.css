@@ -51,12 +51,12 @@
     
   }
   
-  li {
+  li#NavBar {
     display:inline-block;
     padding:15px;
    }
    
-   li:hover {
+   li#NavBar:hover {
      color:darkgreen;
      border-bottom: 2px solid green;
      padding-bottom: 13px;
