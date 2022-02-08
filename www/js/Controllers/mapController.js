@@ -109,6 +109,10 @@ function addItem() {
   if (inputValue === '') {
     alert("Input is Empty!");
   } else {
+    db.collection("lists").add({
+      targetUser: Session.user.uid,
+      value: [],
+    });
     document.getElementById("myUL").appendChild(createItem(inputValue));
   }
 }
@@ -120,6 +124,7 @@ function removeItem() {
   doc.forEach(x => {
     if (x.querySelector('input').checked) {
       x.remove()
+      console.log(x.innerHTML);
     }
   })
 }
