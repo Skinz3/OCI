@@ -83,9 +83,45 @@ async function onSearchClick() {
     });
 
   })
+}
+
+function createItem(value) {
+
+  var li = document.createElement("li");
+  li.className = 'item'
+  li.innerHTML =
+    `<div class="p-2 rounded checkbox-form">
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault-1">
+  ${value}
+  </div>
+  </div>`;
+  return li;
+
+}
+
+function addItem() {
+
+  var myDiv = document.getElementById("myDiv");
+  var inputValue = document.getElementById("myInput").value;
+
+  var checkbox = document.createElement('input');
+  if (inputValue === '') {
+    alert("Input is Empty!");
+  } else {
+    document.getElementById("myUL").appendChild(createItem(inputValue));
+  }
+}
 
 
 
+function removeItem() {
+  var doc = document.querySelectorAll('.item');
+  doc.forEach(x => {
+    if (x.querySelector('input').checked) {
+      x.remove()
+    }
+  })
 }
 function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) {
 
@@ -204,23 +240,23 @@ function saveToFirebase() {
     img: "../img/success.svg",
   })
 }
-function displayFavorites(){
+function displayFavorites() {
   console.log("btn clickable");
   clearResults();
   var resultList = document.getElementById("resultList");
   var z = 0;
   db.collection("favoris").where("targetUser", "==", Session.user.uid)
-  .get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-         var document = doc.data();
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        var document = doc.data();
 
-         appendResult(document.description,document.numero,document.rue,document.ville,document.latitude,document.longitude,z++,resultList);
+        appendResult(document.description, document.numero, document.rue, document.ville, document.latitude, document.longitude, z++, resultList);
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
     });
-})
-.catch((error) => {
-    console.log("Error getting documents: ", error);
-});
 
 
 }
