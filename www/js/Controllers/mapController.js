@@ -46,8 +46,9 @@ async function onSearchClick() {
 
   var but_enreg = document.createElement('button');
   but_enreg.setAttribute("class", "btn btn-secondary btn-sm");
+  but_enreg.setAttribute("data-bs-toggle","modal");
+  but_enreg.setAttribute("data-bs-target","#myModal2");
   but_enreg.textContent = 'Enregistrer Liste';
-  but_enreg.setAttribute('onclick', 'clearResults()');
   but_enreg.style.width = '150px';
 
   var z = 0;
