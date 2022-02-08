@@ -85,7 +85,21 @@ async function onSearchClick() {
 
   })
 }
+function displayList(){
+  $('#myModal').modal('show');
+  db.collection("lists").where("targetUser", "==", Session.user.uid).get().then((docs) => {
 
+    docs.forEach(function (child) {
+
+      var data = child.data();
+      document.getElementById("myUL").appendChild(createItem(data.name));
+
+    });
+
+  })
+
+
+}
 function createItem(value) {
 
   var li = document.createElement("li");
@@ -109,8 +123,11 @@ function addItem() {
   var checkbox = document.createElement('input');
   if (inputValue === '') {
     alert("Input is Empty!");
+    
   } else {
+   
     db.collection("lists").add({
+      name: inputValue,
       targetUser: Session.user.uid,
       value: [],
     });
@@ -128,7 +145,9 @@ function removeItem() {
       console.log(x.innerHTML);
     }
   })
+  
 }
+
 function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) {
 
   var nom = document.createElement('a');
