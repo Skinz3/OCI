@@ -66,6 +66,72 @@
      margin-right: 2%;
    }
 
+#loginDiv{
+        border-radius: 5px;
+        
+        padding: 20px;
+        border-style: groove;
+
+    
+      }
+#signupDiv{
+  border-radius: 5px;
+        
+        padding: 20px;
+        border-style: groove;
+}
+
+  #signin {
+        text-align: center;
+        width: 10%;
+        border-radius: 10px;
+
+        background-color: #04AA6D;
+      }
+
+  #signup{
+        text-align: center;
+        width: 5%;
+        
+        background-color: #04AA6D;
+      }
+#signup1{
+        text-align: center;
+        width: 8%;
+        border-radius: 10px;
+        background-color: #04AA6D;
+      }
+      
+
+#imgcontainer {
+        text-align: center;
+        margin: 16px 0 8px 0;
+        position: relative;
+      }
+
+#cancel_button{
+        text-align: center;
+        width: 7%;
+        background-color: #04AA6D;
+        border-radius: 10px;
+}
+
+#centrer{
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+   
+
+}
+
+#suname,#spsw,#uname,#psw{
+
+ margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+text-align: center;
+}
+
+
    
 /*>>>>>>> 9a2e76f43bd9cc92e60ee9384bbc134c9231eb9d*/
   
