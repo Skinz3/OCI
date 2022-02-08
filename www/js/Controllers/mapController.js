@@ -122,7 +122,15 @@ function addItem() {
 
   var checkbox = document.createElement('input');
   if (inputValue === '') {
-    alert("Input is Empty!");
+    cuteAlert({
+      type: "warning",
+      title: "Please give a name to the list",
+      message: "Empty input fields",
+      buttonText: "Okay",
+      img: "../img/warning.svg",
+    });
+
+    return;
     
   } else {
    
@@ -132,6 +140,12 @@ function addItem() {
       value: [],
     });
     document.getElementById("myUL").appendChild(createItem(inputValue));
+    cuteAlert({
+      type: "success",
+      title: "List successfully added ",
+      message: "List successfully added",
+      img: "../img/success.svg",
+    })
   }
 }
 
@@ -144,6 +158,13 @@ function removeItem() {
       x.remove()
       console.log(x.innerHTML);
     }
+  })
+
+  cuteAlert({
+    type: "success",
+    title: "List successfully deleted ",
+    message: "List successfully deleted",
+    img: "../img/success.svg",
   })
   
 }
@@ -213,8 +234,8 @@ function addToFavorite(f) {
     });
     cuteAlert({
       type: "success",
-      title: "Emplacement ajouté aux favoris",
-      message: "L'emplacement " + $('#description').val() + " a bien été ajouté aux favoris",
+      title: "Location added to Favourites",
+      message: "Location " + $('#description').val() + " successfully added to Favourites",
       img: "../img/success.svg",
     })
     star.setAttribute("class", "fas fa-star");
@@ -259,8 +280,8 @@ function saveToFirebase() {
   );
   cuteAlert({
     type: "success",
-    title: "Emplacement ajouté",
-    message: "L'emplacement " + $('#description').val() + " a bien été ajouté a la base de donnée.",
+    title: "Location added",
+    message: "Location " + $('#description').val() + " successfully added",
     buttonText: "Okay",
     img: "../img/success.svg",
   })
