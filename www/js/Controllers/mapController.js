@@ -46,9 +46,8 @@ async function onSearchClick() {
 
   var but_enreg = document.createElement('button');
   but_enreg.setAttribute("class", "btn btn-secondary btn-sm");
-  but_enreg.setAttribute("data-bs-toggle","modal");
-  but_enreg.setAttribute("data-bs-target","#myModal2");
-  but_enreg.textContent = 'Enregistrer Liste';
+  but_enreg.setAttribute("onClick","openSaveListModal()");
+  but_enreg.textContent = 'Save List';
   but_enreg.style.width = '150px';
 
   var z = 0;
@@ -85,89 +84,8 @@ async function onSearchClick() {
 
   })
 }
-function displayList(){
-  $('#myModal').modal('show');
-  db.collection("lists").where("targetUser", "==", Session.user.uid).get().then((docs) => {
-
-    docs.forEach(function (child) {
-
-      var data = child.data();
-      document.getElementById("myUL").appendChild(createItem(data.name));
-
-    });
-
-  })
 
 
-}
-function createItem(value) {
-
-  var li = document.createElement("li");
-  li.className = 'item'
-  li.innerHTML =
-    `<div class="p-2 rounded checkbox-form">
-  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault-1">
-  ${value}
-  </div>
-  </div>`;
-  return li;
-
-}
-
-function addItem() {
-
-  var myDiv = document.getElementById("myDiv");
-  var inputValue = document.getElementById("myInput").value;
-
-  var checkbox = document.createElement('input');
-  if (inputValue === '') {
-    cuteAlert({
-      type: "warning",
-      title: "Please give a name to the list",
-      message: "Empty input fields",
-      buttonText: "Okay",
-      img: "../img/warning.svg",
-    });
-
-    return;
-    
-  } else {
-   
-    db.collection("lists").add({
-      name: inputValue,
-      targetUser: Session.user.uid,
-      value: [],
-    });
-    document.getElementById("myUL").appendChild(createItem(inputValue));
-    cuteAlert({
-      type: "success",
-      title: "List successfully added ",
-      message: "List successfully added",
-      img: "../img/success.svg",
-    })
-  }
-}
-
-
-
-function removeItem() {
-  var doc = document.querySelectorAll('.item');
-  doc.forEach(x => {
-    if (x.querySelector('input').checked) {
-      x.remove()
-      console.log(x.innerHTML);
-    }
-  })
-
-  cuteAlert({
-    type: "success",
-    title: "List successfully deleted ",
-    message: "List successfully deleted",
-    img: "../img/success.svg",
-  })
-  
-}
 
 function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) {
 
