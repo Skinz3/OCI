@@ -43,11 +43,13 @@ function displayListValue() {
   clearResults();
   var resultList = document.getElementById("resultList");
 
+  var effective = false;
 
   var doc = document.querySelectorAll('.item');
 
   doc.forEach(x => {
     if (x.querySelector('input').checked) {
+      effective = true;
 
       let collectionRef = db.collection("lists");
       var name = x.firstElementChild.firstElementChild.innerText.trim()
@@ -58,7 +60,6 @@ function displayListValue() {
         .then(querySnapshot => {
           querySnapshot.forEach((doc) => {
             var data = doc.data();
-
             var z = 0;
             for (var element of data.value) {
 
@@ -75,7 +76,18 @@ function displayListValue() {
     }
   })
 
+  if (!effective) {
+    cuteAlert({
+      type: "warning",
+      title: "Warning",
+      message: "Please select a list to display.",
+      buttonText: "Okay",
+      img: "../img/warning.svg",
+    });
+  }
   $('#myModal').modal('hide');
+
+
 }
 function addItem() {
 
