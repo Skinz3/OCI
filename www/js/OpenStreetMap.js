@@ -46,7 +46,7 @@ class OpenStreetMap {
 
         var latlng = e.latlng.lat + ',' + e.latlng.lng;
         var greenIcon = new L.Icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -55,7 +55,7 @@ class OpenStreetMap {
         });
         const marker = new L.marker(e.latlng, {
             icon: greenIcon
-        }).addTo(OpenStreetMap.map).bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Ajouter</button></br></br><button type="button" class="remove btn btn-danger">Retirer </button>');
+        }).addTo(OpenStreetMap.map).bindPopup('<button type="button" onClick="openModal(this)" value="' + latlng + '" class="btn btn-success">Add Point</button></br></br><button type="button" class="remove btn btn-danger">Remove</button>');
 
 
         // event remove marker

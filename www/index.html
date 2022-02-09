@@ -62,6 +62,7 @@
     <script src="js/utils.js"></script>
     <script src="js/OpenStreetMap.js"></script>
     <script src="js/Controllers/mapController.js"></script>
+    <script src="js/Controllers/homeController.js"></script>
     <script src="js/session.js"></script>
 
     <title>Navneed</title>
@@ -95,10 +96,10 @@
         <div id="imgcontainer">
             <img src="img/avatar.jfif" alt="Avatar">
         </div>
-        <div id="centrer">
+        <div id="centrer" >
             <label for="uname"><b>Username</b></label>
             </br>
-            <input class="form-control" type="text" placeholder="Enter Username" id="uname" required>
+            <input class="form-control " type="text"  placeholder="Enter Username" id="uname" required>
             </br>
             <label for="psw"><b>Password</b></label>
             </br>
@@ -109,7 +110,7 @@
             <button class="btn btn-success" id="signin">Login</button>
             </br>
             </br>
-            <label><b>Not a member ? <a style="text-decoration:none" href="#" onclick="goToSignup()">Signup</a></label>
+            <label>Not a member ? <a style="text-decoration:none" href="#" onclick="goToSignup()">Signup</a></label>
 
 
         </div>
@@ -136,7 +137,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <input style="margin-left: 3%;" class="form-control me-2" id="searchbar" type="search"
-                        placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search"">
+                        placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search">
 
                 <button onclick=" onSearchClick()" id="btnSearch" class="btn btn-outline-success"
                         type="submit">Search</button>
@@ -145,33 +146,37 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                        <li class="nav-item" id="NavBar">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onclick="displayFavorites()">Mes favoris</a>
+                        <li class="nav-item" id="NavBar">
+                            <a class="nav-link" onclick="displayFavorites()">My Favourites</a>
                         </li>
 
 
-                        <li class="nav-item menu" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <li class="nav-item menu" id="NavBar">
 
-                            <a class="nav-link" id="myListe">Mes listes</a>
+                            <a class="nav-link" onclick="displayList()" id="myListe">My Lists</a>
 
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" onclick="disconnect()">Sign out</a>
-                        </li>
+                        
 
                     </ul>
-
+                   
+                    <a id="color_deconnexion" class="nav-link fa fa-sign-out" href="#" data-toggle="modal" onclick="disconnect()">Sign out</a>
                 </div>
+               
             </div>
+            
         </nav>
+        
+           
+        
         <div class="modal" id="myModal">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Mes listes</h4>
+                        <h4 class="modal-title">My Lists</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body mt-0">
@@ -196,6 +201,29 @@
                 </div>
             </div>
         </div>
+            <div class="modal" id="myModal2">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">My Lists</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body mt-0">
+                            <select  id="listeCombo">
+                               
+                            </select>   
+                        
+                            <button id="btnenregistrer" type="button" class="btn btn-success">Add</button>
+                        </div>
+
+
+                        <div class="modal-footer justify-content-center">
+                          
+                        </div>
+                    </div>
+                </div>
+        </div>
+
     </div>
     <div id="imap">
         <div id="map" style="width: 95%;margin-left: auto;margin-right: auto;">
@@ -217,16 +245,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ajouter centre d'intéret</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add point of interest</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
                             <input type="text" placeholder="Description" class="form-control" id="description"><br>
-                            <input placeholder="Numero" type="text" class="form-control" id="numero">
-                            <input placeholder="Rue" type="text" class="form-control" id="rue">
-                            <input placeholder="Ville" type="text" class="form-control" id="ville"><br>
+                            <input placeholder="Number" type="text" class="form-control" id="numero">
+                            <input placeholder="Street" type="text" class="form-control" id="rue">
+                            <input placeholder="City" type="text" class="form-control" id="ville"><br>
                             <input placeholder="Latitude" type="text" class="form-control" id="lat">
                             <input placeholder="Longitude" type="text" class="form-control" id="lon">
                             <div class="form-group">

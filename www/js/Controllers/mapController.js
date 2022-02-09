@@ -46,8 +46,8 @@ async function onSearchClick() {
 
   var but_enreg = document.createElement('button');
   but_enreg.setAttribute("class", "btn btn-secondary btn-sm");
-  but_enreg.textContent = 'Enregistrer Liste';
-  but_enreg.setAttribute('onclick', 'clearResults()');
+  but_enreg.setAttribute("onClick","openSaveListModal()");
+  but_enreg.textContent = 'Save List';
   but_enreg.style.width = '150px';
 
   var z = 0;
@@ -85,44 +85,8 @@ async function onSearchClick() {
   })
 }
 
-function createItem(value) {
-
-  var li = document.createElement("li");
-  li.className = 'item'
-  li.innerHTML =
-    `<div class="p-2 rounded checkbox-form">
-  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault-1">
-  ${value}
-  </div>
-  </div>`;
-  return li;
-
-}
-
-function addItem() {
-
-  var myDiv = document.getElementById("myDiv");
-  var inputValue = document.getElementById("myInput").value;
-
-  var checkbox = document.createElement('input');
-  if (inputValue === '') {
-    alert("Input is Empty!");
-  } else {
-    document.getElementById("myUL").appendChild(createItem(inputValue));
-  }
-}
 
 
-
-function removeItem() {
-  var doc = document.querySelectorAll('.item');
-  doc.forEach(x => {
-    if (x.querySelector('input').checked) {
-      x.remove()
-    }
-  })
-}
 function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) {
 
   var nom = document.createElement('a');
@@ -188,8 +152,8 @@ function addToFavorite(f) {
     });
     cuteAlert({
       type: "success",
-      title: "Emplacement ajouté aux favoris",
-      message: "L'emplacement " + $('#description').val() + " a bien été ajouté aux favoris",
+      title: "Location added to Favourites",
+      message: "Location " + $('#description').val() + " successfully added to Favourites",
       img: "../img/success.svg",
     })
     star.setAttribute("class", "fas fa-star");
@@ -230,8 +194,8 @@ function saveToFirebase() {
   );
   cuteAlert({
     type: "success",
-    title: "Emplacement ajouté",
-    message: "L'emplacement " + $('#description').val() + " a bien été ajouté a la base de donnée.",
+    title: "Location added",
+    message: "Location " + $('#description').val() + " successfully added",
     buttonText: "Okay",
     img: "../img/success.svg",
   })
