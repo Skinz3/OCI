@@ -3,7 +3,6 @@ auth.onAuthStateChanged(function (user) {
         Session.user = user;
         document.getElementById("appDiv").style.display = "block";
         document.getElementById("loginDiv").style.display = "none";
-        console.log("logged in !");
         //is signed in
 
     } else {
@@ -16,7 +15,6 @@ auth.onAuthStateChanged(function (user) {
 var signInButton = document.getElementById('signin');
 signInButton.addEventListener("click", (e) => {
     e.preventDefault()
-    console.log("clicked")
 
     var email = document.getElementById("uname")
     var password = document.getElementById("psw")

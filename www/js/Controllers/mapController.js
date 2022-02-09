@@ -46,7 +46,7 @@ async function onSearchClick() {
 
   var but_enreg = document.createElement('button');
   but_enreg.setAttribute("class", "btn btn-secondary btn-sm");
-  but_enreg.setAttribute("onClick","openSaveListModal()");
+  but_enreg.setAttribute("onClick", "openSaveListModal()");
   but_enreg.textContent = 'Save List';
   but_enreg.style.width = '150px';
 
@@ -120,12 +120,12 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
   var marker = L.marker([lat, lon]).addTo(OpenStreetMap.map).bindPopup(name);
 
   const element = {
-    houseNumber: houseNumber,
-    street: street,
-    city: city,
-    name: name,
-    latitude: lat,
-    longitude: lon,
+    houseNumber: houseNumber == undefined ? null : houseNumber,
+    street: street == undefined ? null : street,
+    city: city == undefined ? null : city,
+    name: name == undefined ? null : name,
+    latitude: lat == undefined ? null : lat,
+    longitude: lon == undefined ? null : lon,
   };
 
   currentResults.push(element);
