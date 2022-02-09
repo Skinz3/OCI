@@ -27,9 +27,6 @@ class OpenStreetMap {
         }).addTo(macarte);
 
 
-
-
-
         markerClusters = L.markerClusterGroup; // Nous initialisons les groupes de marqueurs
         // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
         L.tileLayer(theme, {

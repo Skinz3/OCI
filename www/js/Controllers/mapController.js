@@ -213,12 +213,8 @@ async function openModal(e) {
 
   document.getElementById("ville").value = data.address.municipality;
   document.getElementById("rue").value = data.address.road;
-
-
-
 }
 function saveToFirebase() {
-
 
   db.collection("locations").add({
     targetUser: Session.user.uid,
