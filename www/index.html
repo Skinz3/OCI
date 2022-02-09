@@ -102,12 +102,12 @@
         <div id="centrer">
             <label for="uname"><b>Username</b></label>
             </br>
-            <input class="form-control " type="text" placeholder="Enter Username" id="uname" required>
+            <input class="form-control fontAwesome" type="text" placeholder="&#xf0e0; Enter Username" id="uname" required>
             </br>
             <label for="psw"><b>Password</b></label>
             </br>
             <input class="form-control fontAwesome" type="password" placeholder="&#61475; Enter Password" id="psw" required>
-            <i class="bi bi-eye-slash" id="togglePassword"></i>
+            
         </div>
         </br>
         <div id="centrer">
@@ -121,25 +121,7 @@
 
     </div>
 
-    <script>
-        const togglePassword = document.querySelector("#togglePassword");
-        const password = document.querySelector("#psw");
-
-        togglePassword.addEventListener("click", function () {
-            // toggle the type attribute
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-            
-            // toggle the icon
-            this.classList.toggle("bi-eye");
-        });
-
-        // prevent form submit
-        const form = document.querySelector("form");
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-        });
-    </script>
+  
 
     <script src="js/Controllers/authController.js"></script>
 
