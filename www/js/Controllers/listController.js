@@ -1,5 +1,6 @@
 function displayList() {
 
+
   var ul = document.getElementById("myUL");
 
   while (ul.firstChild) {
@@ -20,6 +21,8 @@ function displayList() {
 
 
 }
+
+
 function createItem(value) {
 
   var li = document.createElement("li");
@@ -35,6 +38,45 @@ function createItem(value) {
 
 }
 
+function displayListValue() {
+
+  clearResults();
+  var resultList = document.getElementById("resultList");
+
+
+  var doc = document.querySelectorAll('.item');
+
+  doc.forEach(x => {
+    if (x.querySelector('input').checked) {
+
+      let collectionRef = db.collection("lists");
+      var name = x.firstElementChild.firstElementChild.innerText.trim()
+
+      collectionRef.where("targetUser", "==", Session.user.uid)
+        .where("name", "==", name)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach((doc) => {
+            var data = doc.data();
+
+            var z = 0;
+            for (var element of data.value) {
+
+              console.log(element);
+
+              appendResult(element.name, element.houseNumber, element.street,
+                element.city, element.latitude, element.longitude, z++, resultList);
+            }
+
+
+          });
+        });
+
+    }
+  })
+
+  $('#myModal').modal('hide');
+}
 function addItem() {
 
   var myDiv = document.getElementById("myDiv");
@@ -102,9 +144,9 @@ function removeItem() {
     if (x.querySelector('input').checked) {
       x.remove();
       done = true;
-      let fs = firebase.firestore();
-      let collectionRef = fs.collection("lists");
-      var name = x.firstElementChild.firstElementChild.innerText.trim()
+
+      let collectionRef = db.collection("lists");
+      var name = x.firstElementChild.firstElementChild.innerText.trim();
 
       collectionRef.where("targetUser", "==", Session.user.uid)
         .where("name", "==", name)
@@ -146,4 +188,35 @@ function removeItem() {
       img: "../img/success.svg",
     });
   }
+}
+
+
+function appendToList() {
+  var selectedList = document.getElementById("listeCombo").value;
+
+  let collectionRef = db.collection("lists");
+
+  var content = currentResults;
+
+  console.log("content ->");
+
+  console.log(content);
+  collectionRef.where("targetUser", "==", Session.user.uid)
+    .where("name", "==", selectedList)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.update({
+          value: content,
+        })
+      });
+    });
+
+  cuteAlert({
+    type: "success",
+    title: "List(s) updated !",
+    message: "List(s) successfully updated",
+    img: "../img/success.svg",
+  });
+
 }

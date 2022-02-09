@@ -36,7 +36,6 @@ class OpenStreetMap {
             maxZoom: 20
         }).addTo(macarte);
         macarte.on('click', this.addMarker);
-        console.log("test");
 
     }
 

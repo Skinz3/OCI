@@ -62,7 +62,7 @@
     <script src="js/utils.js"></script>
     <script src="js/OpenStreetMap.js"></script>
     <script src="js/Controllers/mapController.js"></script>
-    <script src="js/Controllers/homeController.js"></script>
+    <script src="js/Controllers/listController.js"></script>
     <script src="js/session.js"></script>
 
     <title>Navneed</title>
@@ -96,10 +96,10 @@
         <div id="imgcontainer">
             <img src="img/avatar.jfif" alt="Avatar">
         </div>
-        <div id="centrer" >
+        <div id="centrer">
             <label for="uname"><b>Username</b></label>
             </br>
-            <input class="form-control " type="text"  placeholder="Enter Username" id="uname" required>
+            <input class="form-control " type="text" placeholder="Enter Username" id="uname" required>
             </br>
             <label for="psw"><b>Password</b></label>
             </br>
@@ -139,7 +139,7 @@
                     <input style="margin-left: 3%;" class="form-control me-2" id="searchbar" type="search"
                         placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search">
 
-                <button onclick=" onSearchClick()" id="btnSearch" class="btn btn-outline-success"
+                    <button onclick=" onSearchClick()" id="btnSearch" class="btn btn-outline-success"
                         type="submit">Search</button>
                 </div>
                 <span class="vide"></span>
@@ -159,19 +159,20 @@
                             <a class="nav-link" onclick="displayList()" id="myListe">My Lists</a>
 
                         </li>
-                        
+
 
                     </ul>
-                   
-                    <a id="color_deconnexion" class="nav-link fa fa-sign-out" href="#" data-toggle="modal" onclick="disconnect()">Sign out</a>
+
+                    <a id="color_deconnexion" class="nav-link fa fa-sign-out" href="#" data-toggle="modal"
+                        onclick="disconnect()">Sign out</a>
                 </div>
-               
+
             </div>
-            
+
         </nav>
-        
-           
-        
+
+
+
         <div class="modal" id="myModal">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -193,35 +194,37 @@
                         </ul>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" id="btnSearch3" class="btn btn-success    "
+                        <button type="button" id="btnSearch3" class="btn btn-success"
                             onclick="removeItem()">Remove</button>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
+                        <button type="button" onclick="displayListValue()" class="btn btn-success"
+                            data-bs-dismiss="modal">Display</button>
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-            <div class="modal modal-sm" id="myModal2">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">My Lists</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body mt-0">
-                            <select  id="listeCombo">
-                               
-                            </select>   
-                        
-                            <button id="btnenregistrer" type="button" class="btn btn-success">Add</button>
-                        </div>
+        <div class="modal modal-sm" id="myModal2">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">My Lists</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body mt-0">
+                        <select id="listeCombo">
+
+                        </select>
+
+                        <button id="btnenregistrer" onclick="appendToList()" type="button"
+                            class="btn btn-success">Append to list</button>
+                    </div>
 
 
-                        <div class="modal-footer justify-content-center">
-                          
-                        </div>
+                    <div class="modal-footer justify-content-center">
+
                     </div>
                 </div>
+            </div>
         </div>
 
     </div>
