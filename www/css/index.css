@@ -161,7 +161,15 @@ text-align: center;
 }
 
 #listeCombo{
-  width: 20%;
+  width: 40%;
+}
+
+#myModal2{
+  position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+padding: 10px;
 }
 
 
