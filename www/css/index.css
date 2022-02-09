@@ -156,6 +156,15 @@ text-align: center;
   font-family: 'Helvetica', FontAwesome, sans-serif;
 }
 
+#btnenregistrer{
+  float: right;
+}
+
+#listeCombo{
+  width: 20%;
+}
+
+
 
 
   
