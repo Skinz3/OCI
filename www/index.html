@@ -78,11 +78,11 @@
         <div id="centrer">
             <label for="uname"><b>Username</b></label>
             </br>
-            <input class="form-control" type="text" placeholder="Enter Username" id="suname" required>
+            <input class="form-control fontAwesome" type="text" placeholder="&#xf0e0; Enter Username" id="suname" required>
             </br>
             <label for="psw"><b>Password</b></label>
             </br>
-            <input class="form-control" type="password" placeholder="Enter Password" id="spsw" required>
+            <input class="form-control fontAwesome" type="password" placeholder="&#61475; Enter Password" id="spsw" required>
         </div>
         </br>
         <div id="centrer">
@@ -99,11 +99,11 @@
         <div id="centrer" >
             <label for="uname"><b>Username</b></label>
             </br>
-            <input class="form-control " type="text"  placeholder="Enter Username" id="uname" required>
+            <input class="form-control fontAwesome " type="text"  placeholder="&#xf0e0; Enter Username" id="uname" required>
             </br>
             <label for="psw"><b>Password</b></label>
             </br>
-            <input class="form-control" type="password" placeholder="Enter Password" id="psw" required>
+            <input class="form-control fontAwesome" type="password" placeholder="&#61475; Enter Password" id="psw" required>
         </div>
         </br>
         <div id="centrer">
@@ -136,8 +136,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <input style="margin-left: 3%;" class="form-control me-2" id="searchbar" type="search"
-                        placeholder="Search" onkeypress="searchKeyPress(event)" aria-label="Search">
+                    <input style="margin-left: 3%;" class="form-control me-2 fontAwesome" id="searchbar" type="search"
+                        placeholder="&#xF002; Search" onkeypress="searchKeyPress(event)" aria-label="Search">
 
                 <button onclick=" onSearchClick()" id="btnSearch" class="btn btn-outline-success"
                         type="submit">Search</button>
@@ -312,7 +312,18 @@
         }
     </script>
 
-
+    <script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("navbarSupportedContent");
+    var btns = header.getElementsByClassName("nav-link");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+      });
+    }
+    </script>
 
 
     </div>
