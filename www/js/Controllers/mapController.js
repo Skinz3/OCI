@@ -87,7 +87,7 @@ async function onSearchClick() {
 
 
 
-function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) {
+function appendResult(name, houseNumber, street, city, lat, lon, z, resultList, fav = false) {
 
   var nom = document.createElement('a');
   nom.setAttribute("class", "list-group-item clearfix");
@@ -97,7 +97,12 @@ function appendResult(name, houseNumber, street, city, lat, lon, z, resultList) 
   t.setAttribute("class", "pull-right");
 
   var icon = document.createElement('i');
-  icon.setAttribute("class", "far fa-star");
+
+  if (!fav)
+    icon.setAttribute("class", "far fa-star");
+  else
+    icon.setAttribute("class", "fas fa-star");
+
   icon.setAttribute("id", "star" + z);
   icon.setAttribute("title", "Add to favorite");
   icon.setAttribute("onClick", "addToFavorite(id)");
@@ -211,7 +216,7 @@ function displayFavorites() {
       querySnapshot.forEach((doc) => {
         var document = doc.data();
 
-        appendResult(document.description, document.numero, document.rue, document.ville, document.latitude, document.longitude, z++, resultList);
+        appendResult(document.description, document.numero, document.rue, document.ville, document.latitude, document.longitude, z++, resultList, true);
       });
     })
     .catch((error) => {
